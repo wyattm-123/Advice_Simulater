@@ -1,0 +1,332 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #ff6b6b;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #4a90e2;
+    margin-bottom: 15px;
+}
+
+.main-content {
+    display: flex;
+    gap: 30px;
+}
+
+.environment-section {
+    flex: 2;
+    min-width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+#characterCanvas {
+    width: 100%;
+    height: 400px;
+    background: #e9ecef;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 2px solid #4a90e2;
+    cursor: default;
+}
+
+#characterCanvas.can-grab {
+    cursor: pointer;
+}
+
+#characterCanvas.grabbing {
+    cursor: grabbing;
+}
+
+.story-controls {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.episode-select {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+button {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+button:hover:not(:disabled) {
+    background: #357abd;
+    transform: scale(1.05);
+}
+
+button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+}
+
+select {
+    padding: 10px 15px;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 2px solid #4a90e2;
+    background: white;
+    cursor: pointer;
+}
+
+.interaction-section {
+    flex: 1;
+    min-width: 300px;
+}
+
+.story-info {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 15px;
+}
+
+.episode-description {
+    color: #495057;
+    line-height: 1.6;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+.character-list {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.character-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.character-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.character-card:hover {
+    transform: translateY(-5px);
+}
+
+.character-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: white;
+}
+
+.character-details {
+    flex: 1;
+}
+
+.character-name {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.character-trait {
+    font-style: italic;
+    color: #6c757d;
+}
+
+.emote-container {
+    position: absolute;
+    font-size: 2em;
+    animation: floatUp 2s forwards;
+    pointer-events: none;
+    z-index: 1000;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    50% { transform: translateY(-25px) scale(1.5); opacity: 1; }
+    100% { transform: translateY(-50px) scale(1); opacity: 0; }
+}
+
+/* Character interaction feedback */
+.character-interactive {
+    cursor: pointer;
+}
+
+.character-dragging {
+    cursor: grabbing !important;
+}
+
+.interaction-hint {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 1.1em;
+    color: #ff6b00;
+    box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3);
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.3s ease;
+    pointer-events: none;
+    text-align: center;
+    z-index: 100;
+    font-weight: bold;
+    border: 2px solid rgba(255, 107, 0, 0.5);
+    animation: pulse-attention 2s infinite;
+}
+
+@keyframes pulse-attention {
+    0% { box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3); }
+    50% { box-shadow: 0 4px 20px rgba(255, 107, 0, 0.6); }
+    100% { box-shadow: 0 4px 12px rgba(255, 107, 0, 0.3); }
+}
+
+.environment-section:hover .interaction-hint {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
+}
+
+/* Click effect */
+.click-ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 140, 0, 0.6);
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+    pointer-events: none;
+    z-index: 999;
+    width: 20px;
+    height: 20px;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(6);
+        opacity: 0;
+    }
+}
+
+/* Enhanced speech bubbles */
+.speech-bubble-enhanced {
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.2));
+    transition: transform 0.2s ease;
+}
+
+.speech-bubble-enhanced:hover {
+    transform: scale(1.05);
+}
+
+/* Tooltip for character info */
+.character-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 1em;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+    font-weight: bold;
+    transform: translateY(10px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 140, 0, 0.7);
+}
+
+.character-tooltip.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom cursor styles */
+#characterCanvas {
+    cursor: default;
+}
+
+#characterCanvas.can-grab {
+    cursor: pointer;
+}
+
+#characterCanvas.grabbing {
+    cursor: grabbing;
+}
+
+/* Character glow effect for selected state */
+.character-glow {
+    position: absolute;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0.7;
+    filter: blur(8px);
+    mix-blend-mode: screen;
+}
+
+@media (max-width: 1000px) {
+    .main-content {
+        flex-direction: column;
+    }
+    
+    .environment-section {
+        min-width: 100%;
+    }
+    
+    #characterCanvas {
+        height: 300px;
+    }
+} 
