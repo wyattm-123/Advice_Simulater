@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Advice Corner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Character Advice Corner</h1>
+        
+        <div class="main-content">
+            <div class="environment-section">
+                <canvas id="characterCanvas"></canvas>
+                <div class="character-selector">
+                    <h2>Choose Your Character</h2>
+                    <select id="characterSelect">
+                        <!-- Characters will be populated by JavaScript -->
+                    </select>
+                </div>
+            </div>
+
+            <div class="interaction-section">
+                <div class="character-profile">
+                    <div id="characterDescription" class="character-description">
+                        <!-- Character description will be displayed here -->
+                    </div>
+                </div>
+
+                <div class="advice-section">
+                    <h2>Give Your Advice</h2>
+                    <textarea id="adviceInput" placeholder="Type your advice here..."></textarea>
+                    <button id="submitAdvice">Give Advice</button>
+                </div>
+
+                <div id="responseSection" class="response-section hidden">
+                    <div class="character-leaving">
+                        <p>Character is thinking about your advice...</p>
+                    </div>
+                    <div class="character-returning hidden">
+                        <h3>Character's Response:</h3>
+                        <p id="characterResponse"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="characters.js"></script>
+    <script src="environment.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
