@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neighborhood Stories</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Neighborhood Stories</h1>
+        
+        <div class="main-content">
+            <div class="environment-section">
+                <canvas id="characterCanvas"></canvas>
+                <div class="story-controls">
+                    <button id="startStoryBtn">Start Story</button>
+                    <button id="nextSceneBtn" disabled>Next Scene</button>
+                    <div class="episode-select">
+                        <label for="episodeSelect">Select Episode:</label>
+                        <select id="episodeSelect">
+                            <option value="fitnessChallenge">The Fitness Challenge</option>
+                            <option value="talentShow">The Talent Show</option>
+                            <option value="neighborFeud">The Neighbor Feud</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interaction-section">
+                <div class="story-info">
+                    <h2 id="episodeTitle">Episode: The Fitness Challenge</h2>
+                    <div id="episodeDescription" class="episode-description">
+                        Fitness Fiona challenges the neighborhood to a fitness competition, but not everyone is excited about her 5AM workout routines. Will her enthusiasm win them over or drive them crazy?
+                    </div>
+                </div>
+                
+                <div class="character-list">
+                    <h2>Characters</h2>
+                    <div id="characterList" class="character-cards">
+                        <!-- Character cards will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="characters.js"></script>
+    <script src="stories.js"></script>
+    <script src="environment.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
+</html> 
